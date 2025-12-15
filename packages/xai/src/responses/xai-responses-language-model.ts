@@ -655,6 +655,7 @@ export class XaiResponsesLanguageModel implements LanguageModelV3 {
                   if (contentPart.text && contentPart.text.length > 0) {
                     const blockId = `text-${part.id}`;
 
+                    // Only emit text if we haven't already streamed it via output_text.delta events
                     if (contentBlocks[blockId] == null) {
                       contentBlocks[blockId] = { type: 'text' };
                       controller.enqueue({
